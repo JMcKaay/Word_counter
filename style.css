@@ -1,28 +1,33 @@
 * {
-  outline: 1px solid red;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   display: grid;
-  grid-template-columns: 1fr 4fr ;
-  grid-template-rows: 5% auto;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 50px 1fr; /* Fixed height for header */
   grid-template-areas: 
     "header header"
     "side main";
   min-height: 100vh;
+  max-height: 100vh; /* Prevent body from growing beyond viewport */
+  background: #ddddde75;
+  font-family: "Roboto Flex", serif;
+  font-style: normal;
+  overflow: hidden; /* Prevent scrolling on body */
 }
 
 header {
-  width: 100%;
   grid-area: header;
+  padding: 10px;
 }
 
 .headingTitle {
-  width: 100%;
-  height: 100%;
   margin: 0;
   text-align: center;
+  font-size: 1.5rem; /* Responsive font size */
 }
 
 aside {
@@ -32,39 +37,61 @@ aside {
   grid-template-areas: 
     "wordCount"
     "charCount";
+  overflow: hidden;
+  padding: 10px;
 }
 
 main {
   grid-area: main;
+  padding: 10px;
+  overflow: hidden;
 }
 
-.container{
+.container {
   height: 100%;
   width: 100%;
 }
 
-.textBox{
-  height: 100%;
+.textBox {
+  height: calc(100vh - 70px); /* Viewport height minus header and padding */
   width: 100%;
   vertical-align: top;
   text-align: left;
-  line-height: 36px; 
+  line-height: 36px;
+  outline: none;
+  border-radius: 20px;
+  padding: 15px;
+  resize: none; /* Prevent textarea resizing */
+  overflow-y: auto; /* Allow scrolling within textarea */
 }
 
 .textBox, .textBox::placeholder {
   font-size: 20px;
 }
 
-.wordCount {
+.wordCount, .charCount {
   display: grid;
-  grid-area: wordCount;
   place-items: center;
-  font-size: 50px;
+  background: #e0e7ff;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 5px solid #fefefe;
+  border-radius: 30px;
+  margin: 10px;
+  padding: 15px;
 }
 
 .charCount {
-  display: grid;
-  grid-area: charCount;
-  place-items: center;
-  font-size: 50px;
+  background: #f3e8ff;
+}
+
+.counter-header {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.counter-value {
+  font-size: 2.5rem;
+  font-weight: bold;
 }
